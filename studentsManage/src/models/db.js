@@ -1,8 +1,8 @@
 const {Sequelize} = require("sequelize");
 const {sqlLog}= require("../logger");
 
-const sequelize = new Sequelize("studentsDb","root","root",{
-    host:"121.36.51.141",
+const sequelize = new Sequelize("数据库名称","用户","密码",{
+    host:"url",
     dialect:"mysql",
     logging:(logs,a)=>{
         sqlLog.debug(logs)
