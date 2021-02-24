@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <title>学生信息</title>
 </head>
+<style>
+    #content{
+    }
+</style>
 <body>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="./showdown.min.js"></script>
+<script src="./md.js"></script>
 <div id="content"></div>
 
+
 <script>
-    $.get('./README.md', function(response, status, xhr){
-        $("#content").html(marked(response));
-    });
+    fetch("./README.md").then(res=>res.text()).then(res=>{
+        // document.getElementById("content").innerHTML = marked(res);
+        showdown.setOption('tables', 'true');
+        showdown.setOption('tablesHeaderId', 'true');
+        //创建实例
+        const converter = new showdown.Converter();
+        //进行转换
+        const html = converter.makeHtml(res);
+        //展示到对应的地方  result便是id名称
+        document.getElementById("content").innerHTML = html;
+    })
+
+    //获取要转换的文字
+    // const text = "#学生信息"
+
 </script>
 </body>
 
