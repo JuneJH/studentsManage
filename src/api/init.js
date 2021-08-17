@@ -6,6 +6,7 @@ const admin = require("./admin");
 const book = require("./book")
 // const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const port = 9537
 // 加入session
 // app.use(session({
 //     secret:"June",
@@ -53,9 +54,8 @@ app.use((err, req, res, next) => {
     if (err) {
         const errObj = {
             code: 500,
-            msg: err instanceof Error ? err.message : err,
-        };
-        //发生了错误
+            msg: err instanceof Error ? err.message : err       };
+         //发生了错误
         res.status(500).send(errObj);
     } else {
         next();
@@ -63,7 +63,7 @@ app.use((err, req, res, next) => {
 })
 
 
-app.listen(9527, () => {
-    console.log("开启服务")
+app.listen(port, () => {
+    console.log("server start at "+port)
 })
 
